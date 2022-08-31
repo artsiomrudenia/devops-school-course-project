@@ -1,6 +1,6 @@
 Course project of DevOps school
-- Build backend application
-- Build frontend application
+- [Build backend application](https://github.com/tdevopsschool/course-project#build-backend-application)
+- [Build frontend application](https://github.com/tdevopsschool/course-project#build-frontend-application)
 
 # Build backend application
 ## Precondition
