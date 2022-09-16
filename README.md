@@ -36,7 +36,7 @@ CREATE DATABASE devschool;
 
 ### DB connection configuration
 PostgreSQL database should be installed and deployed.<br>
-Database connection should be configured inside [application.yaml](/src/main/resources/application.yaml):
+Database connection should be configured inside [application.yaml](backend/src/main/resources/application.yaml):
 ```yaml
 spring:
   datasource:
