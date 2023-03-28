@@ -9,7 +9,7 @@ Course project of DevOps school
 List of required tools:
 <ul>
     <li>PostgreSQL 13</li>
-    <li>Gradle or gradlew</li>
+    <li>Gradle v6.7.1 or gradlew</li>
     <li>Java 8</li>
 </ul>
 
