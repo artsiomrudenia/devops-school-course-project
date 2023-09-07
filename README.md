@@ -1,3 +1,5 @@
+moved to https://gitlab.com/t-systems-devops-school/course-project
+
 Course project of DevOps school
 - [Build backend application](https://github.com/tdevopsschool/course-project#build-backend-application)
 - [Build frontend application](https://github.com/tdevopsschool/course-project#build-frontend-application)
