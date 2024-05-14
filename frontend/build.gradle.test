@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'com.google.cloud.tools.jib' version '3.1.0'
+}
+
+allprojects {
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply from: "${rootDir}/gradle/dependencies.gradle"
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+jib {
+    from {
+        image = 'node:14.15.0'
+    }
+    to {
+        image = 'arudenia/dt-devops-school-app-frontend:0.1'
+    }
+    container {
+        ports = ['8081']
+        mainClass = 'ru.tsystems.devschool.DevSchoolApplication'
+    }
+    allowInsecureRegistries = true
+}

@@ -1,0 +1,47 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+plugins {
+    id 'java'
+    id 'com.google.cloud.tools.jib' version '3.1.0' // Add Jib plugin here
+}
+
+ext {
+    yarnCommand = Os.isFamily(Os.FAMILY_WINDOWS) ? 'yarn.cmd' : 'yarn'
+}
+
+clean {
+    delete "production/"
+}
+
+task yarnInstall(type: Exec) {
+    commandLine yarnCommand, 'install', '--ignore-optional'
+}
+
+task yarnBundle(type: Exec, dependsOn: yarnInstall) {
+    inputs.dir file("src/")
+    commandLine yarnCommand, 'run', 'build'
+    outputs.dir file("production/")
+}
+
+dependencies {
+    'default' files(yarnBundle)
+}
+
+jar {
+    from yarnBundle
+}
+
+// Jib configuration
+jib {
+    from {
+        image = 'node:14.15.0' // Use a base image with Node.js
+    }
+    to {
+        image = 'arudenia/dt-devops-school-app-frontend-client:0.1' // Set your image name and tag
+    }
+    container {
+        // ports = ['8081'] // Configure ports for the client container
+        mainClass = 'ru.tsystems.devschool.DevSchoolApplication'
+    }
+    // Other Jib configurations...
+}

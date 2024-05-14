@@ -1,0 +1,15 @@
+# Use a base image with Node.js and Yarn installed
+FROM node:14.15.0
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the built JAR file into the container
+COPY devschool-front-app-server/build/libs/devschool-front-app-server-1.0.0.jar /app/
+
+# Expose the port the application runs on
+EXPOSE 80
+
+# Command to run the application
+CMD ["java", "-jar", "devschool-front-app-server-1.0.0.jar","&"]
+

@@ -1,0 +1,34 @@
+plugins {
+    id 'com.google.cloud.tools.jib' version '3.1.0' // Add Jib plugin here
+}
+
+// Apply Java plugin to the root project or the specific module where Java code is present
+apply plugin: 'java'
+
+subprojects {
+    if (project.name == 'devschool-front-app-client') {
+        // Client-specific configurations
+        jib {
+            from {
+                image = 'node:14.15.0' // Use a base image with Node.js for the client
+            }
+            container {
+                // Adjust container configurations for the client if needed
+            }
+        }
+    } else if (project.name == 'devschool-front-app-server') {
+        // Server-specific configurations
+        jib {
+            container {
+                mainClass = 'ru.tsystems.devschool.DevSchoolApplication' // Adjust the main class as needed for the server
+            }
+        }
+    }
+    // Common configurations for both client and server
+    jib {
+        to {
+            image = 'arudenia/dt-devops-school-app-frontend:0.1' // Set your image name and tag
+        }
+    }
+}
+

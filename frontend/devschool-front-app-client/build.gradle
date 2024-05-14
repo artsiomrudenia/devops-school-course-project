@@ -1,5 +1,9 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
+plugins {
+    id 'java'
+}
+
 ext {
     yarnCommand = Os.isFamily(Os.FAMILY_WINDOWS) ? 'yarn.cmd' : 'yarn'
 }
@@ -25,3 +29,4 @@ dependencies {
 jar {
     from yarnBundle
 }
+

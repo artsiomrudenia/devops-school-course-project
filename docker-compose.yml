@@ -1,0 +1,58 @@
+services:
+  database:
+    container_name: database
+    image: postgres:13
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql:rw
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: devschool
+    networks:
+      app-network:
+        ipv4_address: 172.19.0.2
+
+  backend:
+    container_name: backend
+    build: ./backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://172.19.0.2:5432/devschool
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+#    depends_on:
+#      - database
+    networks:
+      app-network:
+        ipv4_address: 172.19.0.3
+
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    restart: always
+    ports:
+    - "8081:8081"
+#    depends_on:
+#      - backend
+    networks:
+      app-network:
+        ipv4_address: 172.19.0.4
+#networks:
+#  app-network:
+#    external: true
+networks:
+  app-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/16
+          gateway: 172.19.0.1
+volumes:
+  pgdata:
+    driver: local

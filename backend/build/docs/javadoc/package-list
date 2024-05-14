@@ -1,0 +1,11 @@
+io.swagger.configuration
+ru.tsystems.devschool
+ru.tsystems.devschool.api
+ru.tsystems.devschool.config
+ru.tsystems.devschool.controller.delegate
+ru.tsystems.devschool.invoker
+ru.tsystems.devschool.invoker.auth
+ru.tsystems.devschool.mapper
+ru.tsystems.devschool.model
+ru.tsystems.devschool.repository
+ru.tsystems.devschool.service
